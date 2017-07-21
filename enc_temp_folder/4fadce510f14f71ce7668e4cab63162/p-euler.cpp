@@ -260,9 +260,12 @@ long long p8() {
 		series[i] -= 48;						// Fix the string to int ASCII conversion
 	}
 
+
+
 	// Search array for largest adjacent numbers
 	for (int i = 0; i < str.length()-adjacents; i++) {
 		long long  checkNum = 1;	// Reset this to 1, not 0, because it will be multiplied by itself (and other values)
+
 		
 		for (int j = 0; j < adjacents; j++) {
 			checkNum = checkNum * series[i + j];
@@ -277,7 +280,7 @@ long long p8() {
 		checkNum = 1;	
 	}
 
-	delete[] series;							// Free up memory
+	delete[] series;
 
 	return largest;
 }
