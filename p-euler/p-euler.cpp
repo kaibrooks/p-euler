@@ -12,7 +12,7 @@ typedef chrono::high_resolution_clock Clock;
 
 // Initalize functions
 int		kill();
-bool	isPrime(long a);
+bool	isPrime(long long a);
 bool	isPalindrome(int a);
 
 int	p1();
@@ -23,7 +23,8 @@ int	p5();
 int	p6();
 int	p7();
 long long p8();
-
+int p9();
+long long p10();
 
 // Initialize structs
 const string currentDateTime() {
@@ -41,7 +42,7 @@ int main() {
 	auto start = Clock::now();
 
 	// Call the function associated with the problem here
-	cout << p8();
+	cout << p10();
 
 	auto end = Clock::now();
 	cout << endl << "Completed in " << std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count() << " ms." << endl;
@@ -58,8 +59,9 @@ int kill() {
 
 // General functions used in multiple problems
 
-bool isPrime(long a) {
+bool isPrime(long long a) {
 	// Check if a is prime
+	// This function is optimized; loops using it can be lazy without serious performance loss
 	if (a < 3 || a % 2 == 0) {	// Exclude even numbers, 0, 1, and 2
 		return 0;
 	}
@@ -71,7 +73,7 @@ bool isPrime(long a) {
 		return 0;
 	}
 	else {
-		for (int i = 5; i * i <= a; i += 6) {
+		for (int i = 5; i * i <= a; i += 6) {		// Check only up to the square of the value
 			if (a % i == 0 || a % (i + 2) == 0) {
 				return 0;
 			}
@@ -246,7 +248,6 @@ long long p8() {
 
 	int adjacents = 13;	// Adjacent numbers to check
 	long long  largest = 0;
-	int largestPos;
 
 	string str = "7316717653133062491922511967442657474235534919493496983520312774506326239578318016984801869478851843858615607891129494954595017379583319528532088055111254069874715852386305071569329096329522744304355766896648950445244523161731856403098711121722383113622298934233803081353362766142828064444866452387493035890729629049156044077239071381051585930796086670172427121883998797908792274921901699720888093776657273330010533678812202354218097512545405947522435258490771167055601360483958644670632441572215539753697817977846174064955149290862569321978468622482839722413756570560574902614079729686524145351004748216637048440319989000889524345065854122758866688116427171479924442928230863465674813919123162824586178664583591245665294765456828489128831426076900422421902267105562632111110937054421750694165896040807198403850962455444362981230987879927244284909188845801561660979191338754992005240636899125607176060588611646710940507754100225698315520005593572972571636269561882670428252483600823257530420752963450";
 
@@ -280,4 +281,26 @@ long long p8() {
 	delete[] series;							// Free up memory
 
 	return largest;
+}
+
+int p9() {
+	// Find a + b + c = 1000, where a^2 + b^2 = c^2
+	// ex: 3^2 + 4^2 = 9+16 = 25 = 5^2
+
+
+	return 0;
+}
+
+long long p10() {
+	// Find the sum of all primes below 2,000,000
+	// ex: Sum of primes below 10: 2 + 3 + 5 + 7 = 17
+	long long sum = 2;	// Start at 2 for the case of i=2
+	long long num = 2000000;
+
+	for (long long i = 3; i < num; i += 2) {
+		if (isPrime(i)) {
+			sum += i;
+		}
+	}
+	return sum;
 }
